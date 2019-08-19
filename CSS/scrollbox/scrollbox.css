@@ -1,6 +1,10 @@
 .scrollbox{
-    width: 1000px;
-    height: 1000px;
-    overflow: scroll;
-    padding: 5px;
+    /*width: 900px;*/
+    /*height: 700px;*/
+    /*overflow-y: auto;*/
+    /*overflow-x: auto;*/
+    /*padding: 5px;*/
 }
+
+
+
