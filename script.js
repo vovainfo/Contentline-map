@@ -8,10 +8,11 @@ let scale = 1;
 
 function clickOnMap(event){
     console.log(event);
-    hideS();
-    if(!event.target.classList.contains("point-of-interest"))
-        return; //щёлкнули куда попало, но не по кругляшку магазина
-    let idx = getIndexPointByPointId(event.path[1].id);
+    //hideS();
+    // if(!event.target.classList.contains("point-of-interest"))
+    //     return; //щёлкнули куда попало, но не по кругляшку магазина
+    
+    let idx = getIndexPointByPointId(event.target.id);
     if(idx===-1) // так не должно быть. но вдруг?
         return;
     if(arrayPoints[idx].s == null){ // нет доп информации по точке
@@ -41,9 +42,6 @@ function clickOnMinus(){
 }
 
 function rescaleSVG(){
-    console.log(`translate(${-arrayPoints[0].fX*(scale-1)}, ${-arrayPoints[0].fY*(scale-1)}) scale(${scale})`);
-    //svgmap.setAttribute("transform", `scale(${scale})`);
-    //svgmap.setAttribute("viewBox", `0 0 ${viewBox.x/scale} ${viewBox.y/scale}`);
     svgmap.setAttribute("width", `${viewBox.x*scale}`);
     svgmap.setAttribute("height", `${viewBox.y*scale}`);
     for (let i = 0; i < arrayPoints.length; i++) {
@@ -52,19 +50,24 @@ function rescaleSVG(){
             arrayPoints[i].s.setAttribute("transform", `translate(${-arrayPoints[i].fX*(1/scale-1)}, ${-arrayPoints[i].fY*(1/scale-1)}) scale(${1/scale})`);
         }
     }
-
 }
 
 function initArrayPoints(){
     for (let i = 0; i < 19 ; i++) {
         let point = {};
-        point.p = svgmap.querySelector(`#p_x5F_${i+1}`);
-        point.s = svgmap.querySelector(`#s_x5F_${i+1}`);
-        point.x = point.p.querySelector('circle').getAttribute("cx");
-        point.y = point.p.querySelector('circle').getAttribute("cy");
-        point.fX = parseFloat(point.x);
-        point.fY = parseFloat(point.y);
+        point.p = svgmap.querySelector(`#p_x5F_${i+1}`); //ссылка на объект "точка"
+        point.s = svgmap.querySelector(`#s_x5F_${i+1}`); //ссылка на объект "указатель с буквой S"
+        point.x = point.p.querySelector('circle').getAttribute("cx"); //координата X центра точки строкой
+        point.y = point.p.querySelector('circle').getAttribute("cy"); //координата Y центра точки строкой
+        point.fX = parseFloat(point.x); //координата X центра точки флоатом
+        point.fY = parseFloat(point.y); //координата Y центра точки флоатом
         arrayPoints.push(point);
+        if(point.s!=null){
+            point.s.style.setProperty("pointer-events", "none"); //S не должна экранировать точку
+        }
+        point.p.addEventListener("mouseover", clickOnMap);
+        point.p.addEventListener("mouseout", hideS);
+
     }
 }
 
@@ -94,13 +97,12 @@ buttonMinus.addEventListener("click", clickOnMinus);
 
 svgmap.addEventListener("click", clickOnMap);
 
-let elements = document.querySelectorAll('.point-of-interest');
-
-for (let elem of elements) {
-    elem.addEventListener("mouseover", clickOnMap);
-    elem.addEventListener("mouseout", hideS);
-    //console.log(elem);
-}
+// let elements = document.querySelectorAll('.point-of-interest');
+//
+// for (let elem of elements) {
+//     elem.addEventListener("mouseover", clickOnMap);
+//     elem.addEventListener("mouseout", hideS);
+// }
 
 
 initArrayPoints();
