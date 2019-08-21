@@ -1,3 +1,5 @@
+"use strict";
+
 const svgmap = document.querySelector('#svgmap');
 const buttonPlus = document.querySelector('#button-plus');
 const buttonMinus = document.querySelector('#button-minus');
@@ -11,7 +13,7 @@ function clickOnMap(event){
     if(!event.target.classList.contains("point-of-interest"))
          return; //щёлкнули куда попало, но не по кругляшку магазина
 
-    let idx = getIndexPointByPointId(event.target.parentNode.id);
+    const idx = getIndexPointByPointId(event.target.parentNode.id);
     if(idx===-1) // так не должно быть. но вдруг?
         return;
     if(arrayPoints[idx].s == null){ // нет доп информации по точке
@@ -24,11 +26,11 @@ function clickOnMap(event){
 
 
 function hideS(){
-    for (let i = 0; i < arrayPoints.length; i++) {
-        if(arrayPoints[i].s != null){
-            arrayPoints[i].s.style.visibility = "hidden";
+    arrayPoints.forEach(function (item){
+        if(item.s != null){
+            item.s.style.visibility = "hidden";
         }
-    }
+    })
 }
 
 function clickOnPlus(){
@@ -42,7 +44,7 @@ function clickOnMinus(){
 }
 
 function clickOnNormal(){
-    scale =  1;
+    initScale();
     rescaleSVG();
 }
 
@@ -51,17 +53,19 @@ function rescaleSVG(){
     svgmap.setAttribute("width", viewBox.x*scale);
     svgmap.setAttribute("height", viewBox.y*scale);
 
-    for (let i = 0; i < arrayPoints.length; i++) {
-        arrayPoints[i].p.setAttribute("transform", "translate(" + -arrayPoints[i].fX*(1/scale-1) + ", " +  -arrayPoints[i].fY*(1/scale-1) + ") scale(" + 1/scale + ")");
-        if(arrayPoints[i].s!=null){
-            arrayPoints[i].s.setAttribute("transform", "translate(" + -arrayPoints[i].fX*(1/scale-1) + ", " +  -arrayPoints[i].fY*(1/scale-1) + ") scale(" + 1/scale + ")");
+    arrayPoints.forEach(function (item){
+        const strTransform = "translate(" + -item.fX*(1/scale-1) + ", " +  -item.fY*(1/scale-1) + ") scale(" + 1/scale + ")";
+
+        item.p.setAttribute("transform", strTransform);
+        if(item.s!=null){
+            item.s.setAttribute("transform", strTransform);
         }
-    }
+    })
 }
 
 function initArrayPoints(){
     for (let i = 0; i < 19 ; i++) {
-        let point = {};
+        const point = {};
 
         point.p = svgmap.querySelector("#p_x5F_" + (i+1)); //ссылка на объект "точка"
         point.s = svgmap.querySelector("#s_x5F_" + (i+1)); //ссылка на объект "указатель с буквой S"
@@ -91,10 +95,16 @@ function getIndexPointByPointId(pointID){
 
 function initViewBox()
 {
-    let viewBoxCoord = svgmap.getAttribute("viewBox").split(" ");
+    const viewBoxCoord = svgmap.getAttribute("viewBox").split(" ");
 
     viewBox.x = parseFloat(viewBoxCoord[2]);
-    viewBox.y= parseFloat(viewBoxCoord[3]);
+    viewBox.y = parseFloat(viewBoxCoord[3]);
+    initScale();
+}
+
+function initScale(){
+    const scrollbox = document.querySelector('.scrollbox');
+    scale = scrollbox.clientWidth/viewBox.x;
 }
 
 
