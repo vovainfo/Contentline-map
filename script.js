@@ -6,6 +6,7 @@ const buttonMinus = document.querySelector('#button-minus');
 const buttonNormal = document.querySelector('#button-normal');
 const arrayPoints = [];
 const viewBox = {x: 0, y: 0};
+const nPoint = 22;
 
 let scale = 1;
 
@@ -64,7 +65,7 @@ function rescaleSVG(){
 }
 
 function initArrayPoints(){
-    for (let i = 0; i < 19 ; i++) {
+    for (let i = 0; i < nPoint ; i++) {
         const point = {};
 
         point.p = svgmap.querySelector("#p_x5F_" + (i+1)); //ссылка на объект "точка"
@@ -131,11 +132,21 @@ function addPoint(x,y,index){
     point.id = `p_x5F_${index}`;
     point.innerHTML = strPoint;
     const circles = point.querySelectorAll("circle");
-    circles[0].style.fill = `url(mySVGID_${index}_1)`;
-    circles[2].style.fill = `url(mySVGID_${index}_2)`;
+    circles[0].setAttributeNS(null, "fill", `url(#mySVGID_${index}_1)`);
+    circles[2].setAttributeNS(null, "fill", `url(#mySVGID_${index}_2)`);
+
+
     document.querySelector('#points').appendChild(point);
 
-    const style1 = document.createElement('style');
+    //const style1 = document.createElement('style');
+}
+
+
+addS(){
+
+    strS = '
+`
+
 }
 
 
@@ -144,10 +155,10 @@ buttonMinus.addEventListener("click", clickOnMinus);
 buttonNormal.addEventListener("click", clickOnNormal);
 svgmap.addEventListener("click", clickOnMap);
 
-initArrayPoints();
 initViewBox();
-rescaleSVG();
 addPoint(100,100,20);
 addPoint(100,200,21);
 addPoint(100,300,22);
+initArrayPoints();
+rescaleSVG();
 

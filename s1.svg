@@ -1,0 +1,46 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1079.8 1098.4" style="enable-background:new 0 0 1079.8 1098.4" xml:space="preserve" id="svgmap">
+    <style type="text/css">
+    </style>
+
+  <g id="s_x5F_1">
+    <g>
+      <linearGradient id="mySVGID_1_1" gradientUnits="userSpaceOnUse" x1="487.3759" y1="651.2464" x2="576.9922" y2="651.2464">
+        <stop offset="0" style="stop-color:#B3916D"/>
+        <stop offset="0.2253" style="stop-color:#A07D6E"/>
+        <stop offset="0.6836" style="stop-color:#6F4A6F"/>
+        <stop offset="1" style="stop-color:#4A2370"/>
+      </linearGradient>
+      <path fill-rule="evenodd" clip-rule="evenodd" fill= "url(#mySVGID_1_1)" d="M577,638.7c0,24.7-44.8,69.8-44.8,69.8s-44.8-45.1-44.8-69.8c0-24.7,20.1-44.8,44.8-44.8
+				C556.9,593.9,577,614,577,638.7z"/>
+
+      <circle fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" cx="532.2" cy="638.7" r="32.2"/>
+      <circle fill-rule="evenodd" clip-rule="evenodd" fill="#481F72" cx="532.2" cy="638.7" r="27.2"/>
+      <g>
+        <defs>
+          <circle id="mySVGID_1_4" cx="532.2" cy="638.7" r="27.2"/>
+        </defs>
+        <clipPath id="mySVGID_1_2">
+          <use xlink:href="#mySVGID_1_4" style="overflow:visible"/>
+        </clipPath>
+
+        <g style="clip-path:url(#mySVGID_1_2)">
+          <image style="overflow:visible" width="320" height="320" xlink:href="img\S320x320.jpg" transform="matrix(0.1562 0 0 0.1562 507.0865 613.5608)"/>
+        </g>
+      </g>
+    </g>
+    <g>
+      <rect x="563.2" y="439" opacity="0.76" fill="#FFFFFF" width="358.6" height="156.7"/>
+      <text transform="matrix(1 0 0 1 596.4988 562.3759)" font-family="'MyriadPro-Regular',sans-serif" font-size="26px" >
+        myasnit 24/7, str. 1
+      </text>
+      <image style="overflow:visible" width="282" height="47" xlink:href="img\C8705B9C.png" transform="matrix(1.1057 0 0 1.1057 585.5919 470.337)"/>
+      <linearGradient id="mySVGID_1_3" gradientUnits="userSpaceOnUse" x1="592.7587" y1="528.8483" x2="888.7867" y2="528.8483">
+        <stop offset="0" style="stop-color:#B3916D"/>
+        <stop offset="0.2253" style="stop-color:#A07D6E"/>
+        <stop offset="0.6836" style="stop-color:#6F4A6F"/>
+        <stop offset="1" style="stop-color:#4A2370"/>
+      </linearGradient>
+      <line fill="none" stroke="url(#mySVGID_1_3)" stroke-width="5" stroke-miterlimit="10" x1="592.8" y1="528.8" x2="888.8" y2="528.8"/>
+    </g>
+  </g>
+</svg>
